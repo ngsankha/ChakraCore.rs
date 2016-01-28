@@ -1,0 +1,8 @@
+[package]
+name = "cargo-rs"
+version = "0.1.0"
+authors = ["Sankha Narayan Guria <sankha93@gmail.com>"]
+
+[dependencies]
+libc = "0.2.0"
+encoding = "0.2"
