@@ -8,10 +8,10 @@ use chakracore::rust::Runtime;
 
 #[test]
 fn hello() {
-    let runtime = Runtime::new(JsRuntimeAttributes::JsRuntimeAttributeNone);
+    let runtime = Runtime::new(JsRuntimeAttributes::JsRuntimeAttributeNone).unwrap();
     let script = String::from("(()=>{return \'Hello world!\'; })()").to_wchar();
     let label = String::from("test").to_wchar();
-    let result = runtime.run_script(script, 0, label);
-    let result_str = result.to_string();
+    let result = runtime.run_script(script, 0, label).unwrap();
+    let result_str = result.to_string().unwrap();
     assert_eq!(result_str, "Hello world!");
 }

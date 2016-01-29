@@ -16,6 +16,7 @@ pub type JsBackgroundWorkItemCallback = Option<unsafe extern "system" fn(callbac
 pub type JsThreadServiceCallback = Option<unsafe extern "system" fn(callback: JsBackgroundWorkItemCallback, callbackData: *mut c_void)>;
 pub type JsSourceContext = usize;
 
+#[derive(Debug)]
 #[repr(C)]
 pub enum JsErrorCode {
     JsNoError = 0,
