@@ -1,7 +1,6 @@
 environment:
   matrix:
     - TARGET: x86_64-pc-windows-msvc
-    - TARGET: i686-pc-windows-msvc
 
 install:
   - ps: Start-FileDownload "https://static.rust-lang.org/dist/rust-nightly-${env:TARGET}.exe"
@@ -16,12 +15,12 @@ configuration: Debug
 build:
   parallel: true
   project: ChakraCore\Build\Chakra.Core.sln
-  verbosity: normal
+  verbosity: minimal
 
 after_build:
   - mkdir target\debug\deps
-  - copy ChakraCore\Build\VcBuild\bin\*\ChakraCore.lib target\debug\deps
-  - copy ChakraCore\Build\VcBuild\bin\*\ChakraCore.dll target\debug
+  - copy ChakraCore\Build\VcBuild\bin\x64_debug\ChakraCore.lib target\debug\deps
+  - copy ChakraCore\Build\VcBuild\bin\x64_debug\ChakraCore.dll target\debug
 
 test_script:
   - cargo test --verbose
