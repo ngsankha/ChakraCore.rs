@@ -1,5 +1,3 @@
-extern crate libc;
-extern crate encoding;
 extern crate chakracore;
 
 use chakracore::chakra_api::{JsRuntimeAttributes};
@@ -7,7 +5,7 @@ use chakracore::types::{JsValueTypes, StringAsWchar};
 use chakracore::rust::Runtime;
 
 #[test]
-fn hello() {
+fn run_script() {
     let runtime = Runtime::new(JsRuntimeAttributes::JsRuntimeAttributeNone).unwrap();
     let script = String::from("(()=>{return \'Hello world!\'; })()").to_wchar();
     let label = String::from("test").to_wchar();
