@@ -29,7 +29,7 @@ impl Runtime {
 
     pub fn run_script(&self, script: *const wchar_t, context: JsSourceContext, label: *const wchar_t) -> JsValueRef {
         let mut result = JsValueRef(ptr::null_mut() as *mut c_void);
-        unsafe { JsRunScript(script, 1, label, &mut result) };
+        unsafe { JsRunScript(script, context, label, &mut result) };
         result
     }
 }

@@ -25,7 +25,7 @@ impl JsValueTypes for JsValueRef {
 }
 
 impl StringAsWchar for String {
-    fn to_wchar(&self) -> *const wchar_t {
+    fn to_wchar(&self) -> *const wchar_t{
         let mut v: Vec<u8> = UTF_16LE.encode(&self, EncoderTrap::Strict).unwrap();
         v.push(0); v.push(0);
         let arr: &[u16] = unsafe { slice::from_raw_parts(v.as_ptr() as *const _, v.len() / 2) };

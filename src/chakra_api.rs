@@ -16,12 +16,16 @@ pub type JsBackgroundWorkItemCallback = Option<unsafe extern "system" fn(callbac
 pub type JsThreadServiceCallback = Option<unsafe extern "system" fn(callback: JsBackgroundWorkItemCallback, callbackData: *mut c_void)>;
 pub type JsSourceContext = usize;
 
+#[repr(C)]
 pub enum JsErrorCode {
-    JsNoError = 0
+    JsNoError = 0,
+    JsErrorCategoryUsage = 0x10000
 }
 
+#[repr(C)]
 pub enum JsRuntimeAttributes {
-    JsRuntimeAttributeNone
+    JsRuntimeAttributeNone = 0x00000000,
+    JsRuntimeAttributeDisableBackgroundWork = 0x00000001
 }
 
 #[link(name = "ChakraCore")]
