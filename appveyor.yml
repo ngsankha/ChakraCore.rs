@@ -10,6 +10,8 @@ install:
   - cargo -V
   - git clone --depth 1 https://github.com/Microsoft/ChakraCore.git ChakraCore
 
+platform: x64
+
 configuration: Debug
 
 build:
