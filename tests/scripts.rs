@@ -1,6 +1,6 @@
 extern crate chakracore;
 
-use chakracore::chakra_api::{JsRuntimeAttributes};
+use chakracore::api::{JsRuntimeAttributes};
 use chakracore::types::{JsValueTypes, StringAsWchar};
 use chakracore::rust::Runtime;
 

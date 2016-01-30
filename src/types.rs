@@ -1,4 +1,4 @@
-use chakra_api::{JsValueRef, JsConvertValueToString, JsStringToPointer, JsErrorCode};
+use api::{JsValueRef, JsConvertValueToString, JsStringToPointer, JsErrorCode};
 use std::ptr;
 use std::slice;
 use libc::{c_void, wchar_t, size_t};

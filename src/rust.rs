@@ -1,4 +1,4 @@
-use chakra_api::{JsRuntimeHandle, JsContextRef, JsValueRef, JsCreateRuntime, JsCreateContext, JsSetCurrentContext, JsRuntimeAttributes, JsDisposeRuntime, JsSourceContext, JsRunScript, JsErrorCode};
+use api::{JsRuntimeHandle, JsContextRef, JsValueRef, JsCreateRuntime, JsCreateContext, JsSetCurrentContext, JsRuntimeAttributes, JsDisposeRuntime, JsSourceContext, JsRunScript, JsErrorCode};
 use std::ptr;
 use libc::{c_void, wchar_t};
 
