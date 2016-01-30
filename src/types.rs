@@ -5,11 +5,16 @@ use libc::{c_void, wchar_t, size_t};
 use encoding::all::UTF_16LE;
 use encoding::{Encoding, EncoderTrap};
 
+/// Trait to convert a `JsValueRef` to a other native Rust types.
 pub trait JsValueTypes {
+
+    /// Convert to Rust `String`.
     fn to_string(&self) -> Result<String, JsErrorCode>;
 }
 
+/// Trait to convert a Rust `String` to `wchar_t` pointers.
 pub trait StringAsWchar {
+    /// Converts a string to `wchar_t` pointer.
     fn to_wchar(&self) -> *const wchar_t;
 }
 

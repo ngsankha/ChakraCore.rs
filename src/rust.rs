@@ -2,12 +2,18 @@ use api::{JsRuntimeHandle, JsContextRef, JsValueRef, JsCreateRuntime, JsCreateCo
 use std::ptr;
 use libc::{c_void, wchar_t};
 
+/// A Rust equivalent of the ChakraCore runtime.
+///
+/// All dependent ChakraCore runtimes and contexts are destroyed when this goes out of scope.
 pub struct Runtime {
     rt: JsRuntimeHandle,
     cx: JsContextRef
 }
 
 impl Runtime {
+    /// Creates a new `Runtime`.
+    ///
+    /// An equivalent runtime and context is created by ChakraCore when this is done.
     pub fn new(attributes: JsRuntimeAttributes) -> Result<Runtime, JsErrorCode> {
         let mut rt = JsRuntimeHandle(ptr::null_mut() as *mut c_void);
         let mut cx = JsContextRef(ptr::null_mut() as *mut c_void);
@@ -32,17 +38,20 @@ impl Runtime {
         }
     }
 
+    /// Returns the `JsRuntimeHandle` from ChakraCore.
     pub fn rt(&self) -> JsRuntimeHandle {
         self.rt
     }
 
+    /// Returns the `JsContextRef` from ChakraCore.
     pub fn cx(&self) -> JsContextRef {
         self.cx
     }
 
-    pub fn run_script(&self, script: *const wchar_t, context: JsSourceContext, label: *const wchar_t) -> Result<JsValueRef, JsErrorCode> {
+    /// Runs a script and returns the result.
+    pub fn run_script(&self, script: String, context: JsSourceContext, label: String) -> Result<JsValueRef, JsErrorCode> {
         let mut result = JsValueRef(ptr::null_mut() as *mut c_void);
-        let status = unsafe { JsRunScript(script, context, label, &mut result) };
+        let status = unsafe { JsRunScript(script.to_wchar(), context, label, &mut result) };
         match status {
             JsErrorCode::JsNoError => Ok(result),
             _ => Err(status)
