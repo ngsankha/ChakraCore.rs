@@ -49,9 +49,9 @@ impl Runtime {
     }
 
     /// Runs a script and returns the result.
-    pub fn run_script(&self, script: String, context: JsSourceContext, label: String) -> Result<JsValueRef, JsErrorCode> {
+    pub fn run_script(&self, script: *const wchar_t, context: JsSourceContext, label: *const wchar_t) -> Result<JsValueRef, JsErrorCode> {
         let mut result = JsValueRef(ptr::null_mut() as *mut c_void);
-        let status = unsafe { JsRunScript(script.to_wchar(), context, label, &mut result) };
+        let status = unsafe { JsRunScript(script, context, label, &mut result) };
         match status {
             JsErrorCode::JsNoError => Ok(result),
             _ => Err(status)
