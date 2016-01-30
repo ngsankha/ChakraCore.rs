@@ -1,6 +1,10 @@
 version: 0.1.{build}
 
 environment:
+  github_email: sankha93@gmail.com
+  github_user: sankha93
+  github_token:
+    secure: IjwZZQhb6yIj8RgVbv2jYzzjioaOEAlLYD5HnLJh1fWTVlpyKLf3RT3zAJFPKzIL
   matrix:
     - TARGET: x86_64-pc-windows-msvc
 
@@ -28,3 +32,7 @@ after_build:
 
 test_script:
   - cargo test --verbose
+
+after_test:
+  - cargo doc
+  - ps: ./push_docs.ps1 $env:APPVEYOR_BUILD_FOLDER $env:github_email $env:github_user $env:github_token
